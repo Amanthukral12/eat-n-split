@@ -1,10 +1,10 @@
 import propTypes from "prop-types";
 import Friend from "./Friend";
 
-const FriendsList = ({ initialFriends }) => {
+const FriendsList = ({ friends }) => {
   return (
     <ul>
-      {initialFriends.map((friend) => (
+      {friends.map((friend) => (
         <Friend key={friend.id} friend={friend} />
       ))}
     </ul>
@@ -14,5 +14,5 @@ const FriendsList = ({ initialFriends }) => {
 export default FriendsList;
 
 FriendsList.propTypes = {
-  initialFriends: propTypes.array,
+  friends: propTypes.array,
 };
