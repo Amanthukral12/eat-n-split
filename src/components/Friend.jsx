@@ -1,8 +1,9 @@
 import propTypes from "prop-types";
 
-const Friend = ({ friend }) => {
+const Friend = ({ friend, onSelection, selectedFriend }) => {
+  const isSelected = selectedFriend?.id === friend.id;
   return (
-    <li>
+    <li className={isSelected ? "selected" : ""}>
       <img src={friend.image} alt="Friend Image" />
       <h3>{friend.name}</h3>
       {friend.balance < 0 && (
@@ -16,7 +17,9 @@ const Friend = ({ friend }) => {
         </p>
       )}
       {friend.balance === 0 && <p>You and {friend.name} are even</p>}
-      <button className="button">Select</button>
+      <button className="button" onClick={() => onSelection(friend)}>
+        {isSelected ? "Close" : "Select"}
+      </button>
     </li>
   );
 };
@@ -25,4 +28,6 @@ export default Friend;
 
 Friend.propTypes = {
   friend: propTypes.object,
+  onSelection: propTypes.func,
+  selectedFriend: propTypes.object,
 };
